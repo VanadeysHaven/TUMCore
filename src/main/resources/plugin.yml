@@ -1,0 +1,10 @@
+name: TUMCore
+version: 1.0
+description: TUMCore
+author: Cooltimmetje
+main: me.Cooltimmetje.TUMCore.Main
+commands:
+    role:
+        description: role
+    mbc:
+        description: mbc
