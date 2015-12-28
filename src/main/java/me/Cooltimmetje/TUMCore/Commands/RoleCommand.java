@@ -2,6 +2,7 @@ package me.Cooltimmetje.TUMCore.Commands;
 
 import me.Cooltimmetje.TUMCore.Enums.RolesEnum;
 import me.Cooltimmetje.TUMCore.Utilities.ChatUtils;
+import me.Cooltimmetje.TUMCore.Utilities.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,7 +28,7 @@ public class RoleCommand implements CommandExecutor {
                         StringBuilder sb = new StringBuilder();
                         for(RolesEnum role : RolesEnum.values()){
                             if(p.hasPermission("tum.role." + role.toString().toLowerCase())) {
-                                sb.append("&").append(role.getColor()).append(role.toString().toLowerCase()).append(", ");
+                                sb.append("&").append(role.getColor()).append(role.toString().toLowerCase()).append("&a, ");
                             }
                         }
                         ChatUtils.sendMsgTag(p, "Roles", "Available roles: " + sb.toString());
@@ -54,9 +55,7 @@ public class RoleCommand implements CommandExecutor {
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "manuadd " + p.getName() + " " + role.toString().toLowerCase());
         ChatUtils.sendMsgTag(p, "Roles", "You are now a &" + role.getColor() + role.getName() + "&a!");
 
-        for(Player pl : Bukkit.getOnlinePlayers()){
-            pl.setPlayerListName(pl.getDisplayName());
-        }
+        PlayerUtils.setTab();
 
     }
 

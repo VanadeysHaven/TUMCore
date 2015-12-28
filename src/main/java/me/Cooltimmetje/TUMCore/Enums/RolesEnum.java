@@ -14,7 +14,9 @@ public enum RolesEnum {
     BUILDER("Builder",'b'),
     ADMIN("Admin",'c'),
     MAYOR("Mayor",'3'),
-    OWNER("Owner",'c');
+    OWNER("Owner",'c'),
+    ALIEN("Alien",'6'),
+    ROOD("R00D",'4');
 
     private String name;
     private char color;
@@ -32,4 +34,5 @@ public enum RolesEnum {
     public char getColor() {
         return color;
     }
+
 }

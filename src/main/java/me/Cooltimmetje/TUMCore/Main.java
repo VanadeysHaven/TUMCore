@@ -2,11 +2,11 @@ package me.Cooltimmetje.TUMCore;
 
 import me.Cooltimmetje.TUMCore.Commands.Broadcast;
 import me.Cooltimmetje.TUMCore.Commands.RoleCommand;
-import me.Cooltimmetje.TUMCore.Listeners.AchievementListener;
-import me.Cooltimmetje.TUMCore.Listeners.BodyslamListener;
-import me.Cooltimmetje.TUMCore.Listeners.ChatListener;
-import me.Cooltimmetje.TUMCore.Listeners.JoinQuitListener;
+import me.Cooltimmetje.TUMCore.Listeners.*;
+import me.Cooltimmetje.TUMCore.Timers.SetTabTimer;
 import me.Cooltimmetje.TUMCore.Utilities.MiscUtils;
+import me.Cooltimmetje.TUMCore.Utilities.PlayerUtils;
+import me.Cooltimmetje.TUMCore.Utilities.ScheduleUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
@@ -33,27 +33,25 @@ public class Main extends JavaPlugin {
 
         getLogger().info("Registering Listeners..."); //Well, this registers the listeners.
         registerListeners(this
-                , new BodyslamListener(), new JoinQuitListener(), new AchievementListener(), new ChatListener()
+                , new BodyslamListener(), new JoinQuitListener(), new AchievementListener(), new ChatListener(), new PingListener()
         );
 
         getLogger().info("Registering Commands..."); //Can you guess what this does? Yes! It registers the commands.
         registerCommand("role", new RoleCommand());
         registerCommand("mbc", new Broadcast());
-        //format: registerCommand("cmd", new ExecutorClass);
+                //format: registerCommand("cmd", new ExecutorClass);
 
         getLogger().info("Starting setup"); //For stuff like, loading arraylists and databases.
-        for(Player p : Bukkit.getOnlinePlayers()){
-            p.setPlayerListName(p.getDisplayName());p.setPlayerListName(p.getDisplayName());
-        }
+        PlayerUtils.setTab();
 
         getLogger().info("Starting Timers..."); //Well, starts timers. Duh...
+        SetTabTimer.start(this);
 
 
         getLogger().info("Starting post-setup"); //For frontend stuff, like scoreboards.
 
 
         getLogger().info("Finishing up..."); //For stuff that needs to be done after everything.
-
 
         getLogger().info("Plugin ready! (Loadtime: " + getLoad() + "ms)");
         sendDebug("&9Debug> &aPlugin load finished! &c(" + getLoad() + "ms) &3&oYou can take a look in the console for more load information.");

@@ -1,5 +1,6 @@
 package me.Cooltimmetje.TUMCore.Listeners;
 
+import me.Cooltimmetje.TUMCore.Utilities.MiscUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -14,6 +15,8 @@ public class ChatListener implements Listener {
         if(event.getMessage().toLowerCase().contains("#teamivar")){
             event.setMessage("#TEAMERIK");
         }
+
+        event.setMessage(MiscUtils.color(event.getMessage().replace("#PrayForParis","&f#&9Pray&fFor&cParis&f")));
     }
 
 }
